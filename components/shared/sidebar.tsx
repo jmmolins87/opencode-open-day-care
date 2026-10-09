@@ -49,7 +49,7 @@ export default function Sidebar({ active, className = "" }: SidebarProps) {
       </Link>
 
       <Link
-        href="/crear-publicacion"
+        href="/create-post"
         className="mb-[18px] flex w-full items-center justify-center gap-2 rounded-[14px] bg-gradient-to-b from-btn-start to-btn-end px-3 py-3 text-[14.5px] font-extrabold text-white shadow-[0_8px_18px_-8px_rgba(238,129,100,.75)]"
       >
         <PlusIcon className="h-[17px] w-[17px]" strokeWidth={2.4} />
