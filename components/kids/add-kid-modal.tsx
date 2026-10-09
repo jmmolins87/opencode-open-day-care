@@ -43,7 +43,10 @@ function isValidBirthDate(value: string): boolean {
 }
 
 const inputClassName =
-  "w-full rounded-[14px] border-[1.5px] border-[#EADFD0] bg-white px-4 py-[13px] text-[15px] text-ink outline-none placeholder:text-[#B6A99B]";
+  "w-full rounded-[14px] border-[1.5px] bg-white px-4 py-[13px] text-[15px] text-ink outline-none placeholder:text-[#B6A99B]";
+
+const inputBorder = "border-[#EADFD0]";
+const inputBorderError = "border-[#D9583C]";
 
 const labelClassName =
   "mb-2 text-[12px] font-extrabold tracking-[.7px] text-ink-soft";
@@ -130,7 +133,7 @@ export default function AddKidModal({
             value={name}
             onChange={(event) => setName(event.target.value)}
             placeholder="Ej. Martina López"
-            className={`mb-[18px] ${inputClassName}`}
+            className={`mb-[18px] ${inputClassName} ${inputBorder}`}
           />
 
           <div className="mb-[18px] flex gap-[14px]">
@@ -145,7 +148,7 @@ export default function AddKidModal({
                 inputMode="numeric"
                 aria-invalid={dateInvalid}
                 className={`${inputClassName} ${
-                  dateInvalid ? "border-[#D9583C]" : ""
+                  dateInvalid ? inputBorderError : inputBorder
                 }`}
               />
               {dateInvalid && (
@@ -160,7 +163,7 @@ export default function AddKidModal({
                 <select
                   value={room}
                   onChange={(event) => setRoom(event.target.value)}
-                  className={`${inputClassName} appearance-none pr-10 font-bold`}
+                  className={`${inputClassName} ${inputBorder} appearance-none pr-10 font-bold`}
                 >
                   {rooms.map((option) => (
                     <option key={option} value={option}>
@@ -181,7 +184,7 @@ export default function AddKidModal({
             value={allergies}
             onChange={(event) => setAllergies(event.target.value)}
             placeholder="Ej. Maní, Lactosa"
-            className={`mb-[18px] ${inputClassName}`}
+            className={`mb-[18px] ${inputClassName} ${inputBorder}`}
           />
 
           <div className={labelClassName}>NOTAS MÉDICAS</div>
@@ -189,7 +192,7 @@ export default function AddKidModal({
             value={notes}
             onChange={(event) => setNotes(event.target.value)}
             placeholder="Indicaciones, medicación, contactos…"
-            className={`${inputClassName} min-h-[90px] resize-y leading-[1.5]`}
+            className={`${inputClassName} ${inputBorder} min-h-[90px] resize-y leading-[1.5]`}
           />
         </div>
       </div>
