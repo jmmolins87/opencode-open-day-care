@@ -1,6 +1,6 @@
 # SPEC 01 — Home / Feed (OpenDayCare)
 
-> **Estado:** Approved
+> **Estado:** Implemented
 > **Depende de:** —
 > **Fecha:** 2026-10-09
 > **Objetivo:** Implementar la plantilla `references/pantallas/feed.dc.html` como página de inicio `/`, con mock data, navegación con `next/link`, estilo idéntico al template y responsive.
@@ -79,16 +79,26 @@ Los archivos exportarán arreglos con los datos correspondientes (3 posts, 1 usu
 
 ## Criterios de aceptación
 
-- [ ] `npm run dev` abre sin errores de consola en http://localhost:3000.
-- [ ] `/` muestra sidebar, encabezado, composer y tres publicaciones iguales al template.
-- [ ] Las publicaciones se leen desde `data/mock/posts.ts` (sin datos hardcodeados en `page.tsx`).
-- [ ] Tipografías Fredoka y Nunito visibles (self‑hosted).
-- [ ] El estado activo resalta "Feed" (fondo `#FBE3D8`, texto `#D9583C`).
-- [ ] Cada post muestra su badge correcto (LOGRO verde, ACTIVIDAD azul, ANUNCIO violeta).
-- [ ] El post de actividad muestra el placeholder de foto.
-- [ ] Todos los enlaces y botones usan `next/link` y no ejecutan lógica.
-- [ ] En móvil el sidebar queda oculto y se abre con un botón hamburguesa (drawer con overlay), y se cierra correctamente.
-- [ ] Colores, tarjetas, radios y sombras coinciden con los screenshots de referencia.
+- [x] `npm run dev` abre sin errores de consola en http://localhost:3000.
+  - _Verificado con reinicio limpio del dev server: `GET / 200`, 0 errores de consola (Playwright)._
+- [x] `/` muestra sidebar, encabezado, composer y tres publicaciones iguales al template.
+  - _Verificado en navegador (1280px) contra `references/pantallas/feed.dc.html` y `references/screenshots/feed.png`._
+- [x] Las publicaciones se leen desde `data/mock/posts.ts` (sin datos hardcodeados en `page.tsx`).
+  - _`page.tsx` sólo importa `PostList` y `user`; los posts salen de `data/mock/posts.ts`._
+- [x] Tipografías Fredoka y Nunito visibles (self‑hosted).
+  - _`h1` = Fredoka, `body` = Nunito; los woff2 se sirven desde `/_next/static/media/` sin peticiones a Google._
+- [x] El estado activo resalta "Feed" (fondo `#FBE3D8`, texto `#D9583C`).
+  - _Estilos computados: `rgb(251,227,216)` / `rgb(217,88,60)`._
+- [x] Cada post muestra su badge correcto (LOGRO verde, ACTIVIDAD azul, ANUNCIO violeta).
+  - _`#CFEBD8/#3E9B6C`, `#C7E7F1/#2E89A6`, `#CCD8F4/#4E72C8` (iguales al template)._
+- [x] El post de actividad muestra el placeholder de foto.
+  - _Placeholder punteado "Foto · pintando con témperas" visible en el navegador._
+- [x] Todos los enlaces y botones usan `next/link` y no ejecutan lógica.
+  - _Sin etiquetas `<a>` en `app/` ni `components/`; los únicos `onClick` son el estado del drawer._
+- [x] En móvil el sidebar queda oculto y se abre con un botón hamburguesa (drawer con overlay), y se cierra correctamente.
+  - _Verificado a 390×844: sidebar oculto, drawer abre y cierra con overlay y con la X._
+- [x] Colores, tarjetas, radios y sombras coinciden con los screenshots de referencia.
+  - _Card `#FFFDF9`, radio 20px, sombra `0 4px 16px -12px rgba(120,90,60,.5)`; comparación visual con `feed.png`/`feed2.png`._
 
 ## Decisiones
 
