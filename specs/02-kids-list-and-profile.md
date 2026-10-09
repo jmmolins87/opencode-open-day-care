@@ -86,19 +86,32 @@ Derivados (no se guardan):
 
 ## Criterios de aceptación
 
-- [ ] `/kids` carga sin errores de consola y muestra las 8 tarjetas del template.
-- [ ] El menú navega a `/kids` con "Niños" activo (bg `#FBE3D8`, texto `#D9583C`).
-- [ ] Cada tarjeta navega a `/kids/<id>` numérico (ej. `/kids/1`).
-- [ ] Subtítulos derivados correctos: "3 años · 2 padres vinculados", "2 años · sin padres vinculados".
-- [ ] Badges con color por tipo: MANÍ, LACTOSA, y el resto del enum con sus colores; VINCULAR en el id 4; chevron en niños sin alerts.
-- [ ] El buscador filtra en tiempo real (frontend) y, sin coincidencias, muestra el mensaje "sin resultados".
-- [ ] `/kids/1` muestra avatar, "3 años · Sala Soles", caja de alergias (color de `peanut`), ficha (fecha/sala/ingreso), "Resumen del día" y los 2 padres con estados ACTIVA/PENDIENTE.
-- [ ] "Volver a Niños" navega a `/kids`.
-- [ ] `/kids/999` devuelve 404 (`notFound()`).
-- [ ] Un niño sin alerts no muestra la caja de alerta en su perfil.
-- [ ] Agregar niño, Editar, Resumen del día y Vincular otro padre usan `next/link` sin lógica.
-- [ ] En móvil (390×844) el sidebar queda oculto y el drawer abre/cierra con "Niños" activo.
-- [ ] No se duplican `Sidebar`/`MobileHeader`/iconos: solo se reusan de `components/shared/`.
+- [x] `/kids` carga sin errores de consola y muestra las 8 tarjetas del template.
+  - _Verificado con Playwright (1280px): 8 `a.kid`, 0 errores de consola._
+- [x] El menú navega a `/kids` con "Niños" activo (bg `#FBE3D8`, texto `#D9583C`).
+  - _Estilos computados: `rgb(251,227,216)` / `rgb(217,88,60)` en sidebar y drawer._
+- [x] Cada tarjeta navega a `/kids/<id>` numérico (ej. `/kids/1`).
+  - _Click en "Mateo Fernández" → `http://localhost:3000/kids/1`; hrefs `/kids/1`…`/kids/8`._
+- [x] Subtítulos derivados correctos: "3 años · 2 padres vinculados", "2 años · sin padres vinculados".
+  - _Mateo "3 años · 2 padres vinculados"; Valentina "2 años · sin padres vinculados"._
+- [x] Badges con color por tipo: MANÍ, LACTOSA, y el resto del enum con sus colores; VINCULAR en el id 4; chevron en niños sin alerts.
+  - _Computados: MANÍ `#FBD8CC`/`#D9684A`, LACTOSA `#C7E7F1`/`#2E89A6`, HUEVO `#CFEBD8`/`#3E9B6C`, GLUTEN `#F7E7A6`/`#9A7B1E`, FRUTOS SECOS `#CCD8F4`/`#4E72C8`, VINCULAR `#F9D2DE`/`#C56486`; chevron en Sofía y Benjamín._
+- [x] El buscador filtra en tiempo real (frontend) y, sin coincidencias, muestra el mensaje "sin resultados".
+  - _`zzz` → mensaje "Sin resultados" (corregido en esta verificación); `ma` → Mateo y Emma; vacío → 8._
+- [x] `/kids/1` muestra avatar, "3 años · Sala Soles", caja de alergias (color de `peanut`), ficha (fecha/sala/ingreso), "Resumen del día" y los 2 padres con estados ACTIVA/PENDIENTE.
+  - _Caja bg `rgb(251,216,204)` = `#FBD8CC`; ficha "12 mar 2022 / Soles / feb 2025"; Lucía ACTIVA, Diego PENDIENTE._
+- [x] "Volver a Niños" navega a `/kids`.
+  - _Click → `http://localhost:3000/kids`._
+- [x] `/kids/999` devuelve 404 (`notFound()`).
+  - _`curl` → HTTP 404 (id y `/kids/abc` no numérico también); `/kids/1` → 200._
+- [x] Un niño sin alerts no muestra la caja de alerta en su perfil.
+  - _`/kids/2` (Sofía, sin alerts ni notes): no renderiza "Alergias y notas"._
+- [x] Agregar niño, Editar, Resumen del día y Vincular otro padre usan `next/link` sin lógica.
+  - _Grep: sin `<a>` literales ni `onClick` en `app/kids`/`components/kids`; hrefs `/kids/nuevo`, `/daily-summary`, `/link-parent` (corregido de `/kids/new` a `/kids/nuevo` según Decisiones)._
+- [x] En móvil (390×844) el sidebar queda oculto y el drawer abre/cierra con "Niños" activo.
+  - _Verificado en `/kids` y `/kids/1`: 0 asides visibles con el drawer cerrado; drawer abre con Niños `#FBE3D8`/`#D9583C` y cierra con la X y con el overlay; sin overflow horizontal._
+- [x] No se duplican `Sidebar`/`MobileHeader`/iconos: solo se reusan de `components/shared/`.
+  - _Grep: las definiciones solo existen en `components/shared/`; `app/kids` solo los importan._
 
 ## Decisiones
 
