@@ -15,3 +15,10 @@ This block is written and re-added by `next dev` — verify at `node_modules/nex
 
 ## Reglas de código
 - Usar código limpio, nombres, funciones, variables, etc en inglés.
+
+## Agentes
+- `spec-verifier` (definido en `~/.config/opencode/agents/spec-verifier.md`): agente verificador de los "Acceptance criteria" de un spec.
+  - Localiza el spec (`specs/`, `docs/`, `*.spec.md`…), revisa cada criterio, verifica en el código y en UI (Playwright) y en la doc actual (Context7) si se cumple.
+  - Corrige lo que haga falta y solo marca `- [x]` los criterios realmente verificados; los no verificados quedan en `- [ ]` con el motivo.
+  - Termina con un resumen: cumplidos, pendientes y correcciones realizadas.
+  - Responde en español y usa nombres en inglés en el código.
