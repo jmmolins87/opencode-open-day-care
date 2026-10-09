@@ -9,8 +9,9 @@ This block is written and re-added by `next dev` — verify at `node_modules/nex
 <!-- END:nextjs-agent-rules -->
 
 ## Reglas básicas
-- Responder siempre en español
-- Una vez te de permiso para seguir con la siguiente fase harás commit descriptivo de los cambios realizados en la fase anterior
+- Responder siempre en español.
+- Una vez te de permiso para seguir con la siguiente fase harás commit descriptivo de los cambios realizados en la fase anterior.
+- Una vez revisadas los archivos temp y las capturas de playwright se borraran y nunca se comitearán.
 
 ## Reglas de código
-- Usar código limpio, nombres, funciones, variables, etc en inglés
+- Usar código limpio, nombres, funciones, variables, etc en inglés.
