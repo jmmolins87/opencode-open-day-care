@@ -53,7 +53,7 @@ export default function KidCard({ kid }: { kid: Kid }) {
           {kid.name}
         </span>
         <span className="block text-[13px] text-ink-muted">
-          {kid.age} · {parentsLabel(kid.parents.length)}
+          {kid.age || kid.birthDate} · {parentsLabel(kid.parents.length)}
         </span>
       </span>
       <CardBadge kid={kid} />
