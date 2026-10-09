@@ -35,7 +35,7 @@ export default function Home() {
               {user.initial}
             </span>
             <span className="flex-1 text-[15px] text-ink-muted">
-              Compartí un momento…
+              Comparte un momento…
             </span>
             <span className="flex h-[38px] w-[38px] flex-none items-center justify-center rounded-xl bg-accent-active-bg text-accent-action">
               <CameraIcon className="h-[19px] w-[19px]" />

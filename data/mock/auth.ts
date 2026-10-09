@@ -1,21 +1,4 @@
-// Mock data for the login and activate-account pages
-
-export type LoginRole = "staff" | "parent";
-
-export interface DemoAccount {
-  role: LoginRole;
-  email: string;
-  homeHref: string;
-}
-
-export const demoAccounts: Record<LoginRole, DemoAccount> = {
-  staff: { role: "staff", email: "caro@opendaycare.com", homeHref: "/" },
-  parent: {
-    role: "parent",
-    email: "lucia.fernandez@gmail.com",
-    homeHref: "/family-feed",
-  },
-};
+// Mock data for the activate-account page
 
 export interface Invite {
   code: string;
