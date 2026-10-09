@@ -27,7 +27,7 @@ export const posts: Post[] = [
     body: "¡Usó el orinal solito por primera vez! Estaba feliz de contárselo a todos. Un gran paso.",
     likes: 3,
     comments: 1,
-    isMine: false,
+    isMine: true,
   },
   {
     id: "2",
@@ -40,7 +40,7 @@ export const posts: Post[] = [
     photo: { src: "/foto-placeholder.jpg", caption: "Foto · pintando con témperas" },
     likes: 5,
     comments: 2,
-    isMine: false,
+    isMine: true,
   },
   {
     id: "3",
@@ -52,6 +52,6 @@ export const posts: Post[] = [
     body: "El viernes salimos al parque por la mañana. Recuerden mandar gorra y una botellita de agua.",
     likes: 8,
     comments: 0,
-    isMine: false,
+    isMine: true,
   },
 ];
