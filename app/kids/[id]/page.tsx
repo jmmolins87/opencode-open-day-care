@@ -4,6 +4,8 @@ import Sidebar from "@/components/shared/sidebar";
 import KidProfile from "@/components/kids/kid-profile";
 import { getKidById } from "@/data/mock/kids";
 
+export const instant = false;
+
 export default async function KidProfilePage({
   params,
 }: {
