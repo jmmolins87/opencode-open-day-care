@@ -37,7 +37,7 @@ export default function KidsDirectory() {
 
       {filteredKids.length === 0 ? (
         <p className="py-10 text-center text-[15px] text-ink-muted">
-          No se encontraron niños
+          Sin resultados
         </p>
       ) : (
         <div className="grid grid-cols-1 gap-[14px] lg:grid-cols-2">

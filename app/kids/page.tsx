@@ -22,7 +22,7 @@ export default function KidsPage() {
               </h1>
             </div>
             <Link
-              href="/kids/new"
+              href="/kids/nuevo"
               className="flex items-center gap-2 rounded-[14px] bg-gradient-to-b from-btn-start to-btn-end px-[18px] py-[11px] text-[14.5px] font-extrabold text-white shadow-[0_8px_18px_-8px_rgba(238,129,100,.7)]"
             >
               <PlusIcon className="h-[17px] w-[17px]" strokeWidth={2.4} />
