@@ -1,11 +1,12 @@
+"use client";
+
 import Link from "next/link";
-import { MenuIcon, SunIcon } from "./icons";
+import { useState } from "react";
+import { CloseIcon, MenuIcon, SunIcon } from "./icons";
 
-interface MobileHeaderProps {
-  onMenuClick: () => void;
-}
+export default function MobileHeader() {
+  const [isDrawerOpen, setIsDrawerOpen] = useState(false);
 
-export default function MobileHeader({ onMenuClick }: MobileHeaderProps) {
   return (
     <header className="sticky top-0 z-40 flex items-center justify-between border-b border-border bg-surface px-4 py-3 lg:hidden">
       <Link href="/" className="flex items-center gap-2.5">
@@ -19,11 +20,16 @@ export default function MobileHeader({ onMenuClick }: MobileHeaderProps) {
 
       <button
         type="button"
-        onClick={onMenuClick}
-        aria-label="Abrir menú"
+        onClick={() => setIsDrawerOpen((open) => !open)}
+        aria-expanded={isDrawerOpen}
+        aria-label={isDrawerOpen ? "Cerrar menú" : "Abrir menú"}
         className="flex h-10 w-10 items-center justify-center rounded-[10px] bg-page text-ink-soft"
       >
-        <MenuIcon className="h-5 w-5" />
+        {isDrawerOpen ? (
+          <CloseIcon className="h-5 w-5" />
+        ) : (
+          <MenuIcon className="h-5 w-5" />
+        )}
       </button>
     </header>
   );
