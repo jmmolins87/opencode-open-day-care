@@ -70,7 +70,7 @@ export default function PostCard({ post }: { post: Post }) {
 
       {post.photo && (
         <Link
-          href="/foto"
+          href="/photo"
           className="mt-[14px] flex h-[200px] flex-col items-center justify-center gap-2 rounded-[16px] border-[1.5px] border-dashed border-photo-border bg-photo-bg text-photo-fg"
         >
           <ImageIcon className="h-[30px] w-[30px]" strokeWidth={1.7} />
@@ -84,7 +84,7 @@ export default function PostCard({ post }: { post: Post }) {
           {post.likes}
         </span>
         <Link
-          href="/detalle-publicacion"
+          href="/post-detail"
           className="flex items-center gap-[7px] text-[14px] font-bold text-ink-soft"
         >
           <CommentIcon className="h-[18px] w-[18px]" />
@@ -92,7 +92,7 @@ export default function PostCard({ post }: { post: Post }) {
         </Link>
         <span className="flex-1" />
         <Link
-          href="/crear-publicacion"
+          href="/create-post"
           className="text-[14px] font-extrabold text-accent-link"
         >
           Editar

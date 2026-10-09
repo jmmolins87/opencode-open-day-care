@@ -28,7 +28,7 @@ export default function Home() {
           </div>
 
           <Link
-            href="/crear-publicacion"
+            href="/create-post"
             className="mb-6 flex items-center gap-[14px] rounded-[18px] border border-border bg-surface px-[18px] py-[14px] shadow-[0_4px_14px_-10px_rgba(120,90,60,.4)]"
           >
             <span className="flex h-10 w-10 flex-none items-center justify-center rounded-full bg-accent font-heading text-[16px] font-semibold text-white">
