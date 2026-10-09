@@ -3,6 +3,7 @@ import MobileHeader from "@/components/shared/mobile-header";
 import Sidebar from "@/components/shared/sidebar";
 import { PlusIcon } from "@/components/shared/icons";
 import KidsDirectory from "@/components/kids/kids-directory";
+import { kids } from "@/data/mock/kids";
 
 export default function KidsPage() {
   return (
@@ -30,7 +31,7 @@ export default function KidsPage() {
             </Link>
           </div>
 
-          <KidsDirectory />
+          <KidsDirectory kids={kids} />
         </div>
       </main>
     </div>

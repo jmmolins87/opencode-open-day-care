@@ -1,18 +1,18 @@
 "use client";
 
 import { useMemo, useState } from "react";
-import { kids } from "@/data/mock/kids";
+import type { Kid } from "@/data/mock/kids";
 import { SearchIcon } from "@/components/shared/icons";
 import KidCard from "./kid-card";
 
-export default function KidsDirectory() {
+export default function KidsDirectory({ kids }: { kids: Kid[] }) {
   const [query, setQuery] = useState("");
 
   const filteredKids = useMemo(() => {
     const q = query.trim().toLowerCase();
     if (!q) return kids;
     return kids.filter((kid) => kid.name.toLowerCase().includes(q));
-  }, [query]);
+  }, [kids, query]);
 
   return (
     <div>

@@ -16,6 +16,7 @@ This block is written and re-added by `next dev` — verify at `node_modules/nex
 
 ## Reglas de código
 - Usar código limpio, nombres, funciones, variables, etc en inglés.
+- Si un mock (o cualquier código) deja de utilizarse, se borra; no se dejan archivos ni imports muertos.
 
 ## Agentes
 - `spec-verifier` (definido en `~/.config/opencode/agents/spec-verifier.md`): agente verificador de los "Acceptance criteria" de un spec.
