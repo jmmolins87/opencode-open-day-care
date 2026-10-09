@@ -10,6 +10,7 @@ This block is written and re-added by `next dev` — verify at `node_modules/nex
 
 ## Reglas básicas
 - Responder siempre en español
+- Una vez te de permiso para seguir con la siguiente fase harás commit descriptivo de los cambios realizados en la fase anterior
 
 ## Reglas de código
 - Usar código limpio, nombres, funciones, variables, etc en inglés
