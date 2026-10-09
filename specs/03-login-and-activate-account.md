@@ -64,17 +64,28 @@ export const invite: Invite = {
 
 ## Criterios de aceptación
 
-- [ ] `/login` carga sin errores de consola y muestra panel gradiente + formulario iguales al template (1280px).
-- [ ] "Iniciar sesión" navega a `/`.
-- [ ] "Activa tu cuenta" navega a `/activate-account`.
-- [ ] "¿Olvidaste tu contraseña?" es texto sin acción (no navega).
-- [ ] El código de invitación y el email salen de `data/mock/auth.ts` (sin datos hardcodeados en los componentes).
-- [ ] `/activate-account` muestra card de invitación ("Mateo · Sala Soles", avatar `M` `#A9D9E8`), `7K4P9`, `lucia.fernandez@gmail.com` y los 3 inputs del template.
-- [ ] El checkbox de consentimiento se puede marcar/desmarcar y arranca marcado.
-- [ ] "Activar mi cuenta" navega a `/family-feed`; "Iniciar sesión" del pie navega a `/login`.
-- [ ] Ninguna de las dos pantallas renderiza `Sidebar` ni `MobileHeader`.
-- [ ] En móvil (390×844) ambas pantallas se ven sin desbordes y son usables.
-- [ ] No hay `<a>` ni `onClick` de navegación: todos los enlaces usan `next/link`.
+- [x] `/login` carga sin errores de consola y muestra panel gradiente + formulario iguales al template (1280px).
+  - _Verificado con Playwright: panel gradiente `lg:flex` presente, título "Iniciar sesión", 0 errores de consola; screenshot comparado con `login.dc.html`._
+- [x] "Iniciar sesión" navega a `/`.
+  - _Click → `http://localhost:3000/`._
+- [x] "Activa tu cuenta" navega a `/activate-account`.
+  - _Click → `http://localhost:3000/activate-account`._
+- [x] "¿Olvidaste tu contraseña?" es texto sin acción (no navega).
+  - _Es un `<span>` sin ancestro `<a>`._
+- [x] El código de invitación y el email salen de `data/mock/auth.ts` (sin datos hardcodeados en los componentes).
+  - _Grep: `7K4P9` y `lucia.fernandez@gmail.com` no aparecen en `components/auth/`; solo en el mock._
+- [x] `/activate-account` muestra card de invitación ("Mateo · Sala Soles", avatar `M` `#A9D9E8`), `7K4P9`, `lucia.fernandez@gmail.com` y los 3 inputs del template.
+  - _Card y avatar `rgb(169,217,232)` verificados; 3 inputs visibles (código/email/contraseña)._
+- [x] El checkbox de consentimiento se puede marcar/desmarcar y arranca marcado.
+  - _Arranca verde `rgb(95,185,126)` con check → clic gris sin check → clic verde con check._
+- [x] "Activar mi cuenta" navega a `/family-feed`; "Iniciar sesión" del pie navega a `/login`.
+  - _Clicks → `http://localhost:3000/family-feed` (404 aceptado en alcance) y `http://localhost:3000/login`._
+- [x] Ninguna de las dos pantallas renderiza `Sidebar` ni `MobileHeader`.
+  - _Sin `<aside>` ni `<header>` en ambas rutas._
+- [x] En móvil (390×844) ambas pantallas se ven sin desbordes y son usables.
+  -_`scrollWidth == clientWidth` en ambas; botones principales visibles y clicables._
+- [x] No hay `<a>` ni `onClick` de navegación: todos los enlaces usan `next/link`.
+  - _Grep: sin `<a>` literales; único `onClick` es el toggle del checkbox (estado, no navegación)._
 
 ## Decisiones
 
