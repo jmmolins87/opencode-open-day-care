@@ -10,7 +10,7 @@ export default function Home() {
 
   return (
     <div className="min-h-screen bg-page lg:flex">
-      <MobileHeader />
+      <MobileHeader active="/" />
       <Sidebar active="/" className="hidden lg:flex" />
 
       <main className="min-w-0 flex-1 lg:h-screen lg:overflow-y-auto">
