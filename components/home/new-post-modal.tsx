@@ -7,8 +7,7 @@ import { CloseIcon, PlusIcon } from "@/components/shared/icons";
 
 export interface NewPostFormValues {
   kind: PostKind;
-  kidId: number | null;
-  toRoom: boolean;
+  kidIds: number[];
   body: string;
   photos: string[];
 }
@@ -59,8 +58,7 @@ export default function NewPostModal({
   onSave: (values: NewPostFormValues) => void;
 }) {
   const [kind, setKind] = useState<PostKind>("meal");
-  const [kidId, setKidId] = useState<number | null>(kids[0].id);
-  const [toRoom, setToRoom] = useState(false);
+  const [selectedKidIds, setSelectedKidIds] = useState<number[]>([kids[0].id]);
   const [body, setBody] = useState("");
   const [photos, setPhotos] = useState<string[]>([]);
   const [isDragging, setIsDragging] = useState(false);
@@ -85,7 +83,8 @@ export default function NewPostModal({
     };
   }, [onClose]);
 
-  const canPublish = body.trim().length > 0;
+  const canPublish = body.trim().length > 0 && selectedKidIds.length > 0;
+  const allKidsSelected = selectedKidIds.length === kids.length;
 
   function appendPhotos(files: FileList) {
     const images = Array.from(files).filter((file) =>
@@ -114,7 +113,7 @@ export default function NewPostModal({
   function handlePublish() {
     if (!canPublish) return;
     publishedRef.current = true;
-    onSave({ kind, kidId, toRoom, body: body.trim(), photos });
+    onSave({ kind, kidIds: selectedKidIds, body: body.trim(), photos });
   }
 
   return (
@@ -157,15 +156,18 @@ export default function NewPostModal({
           <div className={labelClassName}>PARA</div>
           <div className="mb-[22px] flex flex-wrap gap-[9px]">
             {kids.map((kid) => {
-              const isActive = !toRoom && kidId === kid.id;
+              const isActive = selectedKidIds.includes(kid.id);
               return (
                 <button
                   key={kid.id}
                   type="button"
-                  onClick={() => {
-                    setToRoom(false);
-                    setKidId(kid.id);
-                  }}
+                  onClick={() =>
+                    setSelectedKidIds((prev) =>
+                      prev.includes(kid.id)
+                        ? prev.filter((id) => id !== kid.id)
+                        : [...prev, kid.id],
+                    )
+                  }
                   className={`flex cursor-pointer items-center gap-2 rounded-full px-[14px] py-[6px] pl-[6px] text-[14px] font-bold ${
                     isActive
                       ? "border-[1.5px] border-[#3F362E] bg-[#3F362E] text-white"
@@ -187,15 +189,18 @@ export default function NewPostModal({
             })}
             <button
               type="button"
-              onClick={() => {
-                setToRoom(true);
-                setKidId(null);
-              }}
+              onClick={() =>
+                setSelectedKidIds(
+                  allKidsSelected ? [] : kids.map((item) => item.id),
+                )
+              }
               className={`cursor-pointer rounded-full px-[16px] py-[6px] text-[14px] font-bold ${
-                toRoom ? "border-[1.5px] border-[#3F362E] bg-[#3F362E] text-white" : chipIdle
+                allKidsSelected
+                  ? "border-[1.5px] border-[#3F362E] bg-[#3F362E] text-white"
+                  : chipIdle
               }`}
             >
-              Toda la sala
+              Seleccionar todos
             </button>
           </div>
 
