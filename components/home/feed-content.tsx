@@ -56,8 +56,12 @@ export default function FeedContent() {
 
   return (
     <div className="min-h-screen bg-page lg:flex">
-      <MobileHeader active="/" />
-      <Sidebar active="/" className="hidden lg:flex" />
+      <MobileHeader active="/" onNewPost={() => setOpen(true)} />
+      <Sidebar
+        active="/"
+        className="hidden lg:flex"
+        onNewPost={() => setOpen(true)}
+      />
 
       <main className="min-w-0 flex-1 lg:h-screen lg:overflow-y-auto">
         <div className="mx-auto w-full max-w-[760px] px-5 pb-20 pt-8 lg:px-10 lg:pt-[34px]">
