@@ -18,6 +18,13 @@ This block is written and re-added by `next dev` — verify at `node_modules/nex
 - Usar código limpio, nombres, funciones, variables, etc en inglés.
 - Si un mock (o cualquier código) deja de utilizarse, se borra; no se dejan archivos ni imports muertos.
 
+## Supabase
+- MCP `supabase` configurado en `~/.config/opencode/opencode.jsonc` (remoto, `project_ref=vbwacmmaqxgmwioipmvt`) con OAuth ya autenticado. Usarlo para consultar/esquema, logs, docs y edge functions.
+- Skills de Supabase instaladas en el repo:
+  - `.agents/skills/supabase/SKILL.md` — carga la skill `supabase` al trabajar con Supabase (DB, Auth, RLS, Storage, Edge Functions, Realtime, debugging).
+  - `.agents/skills/supabase-postgres-best-practices/SKILL.md` — carga la skill `supabase-postgres-best-practices` antes de tocar cualquier cosa viva en Postgres (tablas, columnas, migraciones, índices, RLS, funciones, rendimiento).
+- Antes de cambios de schema: inspecciona las tablas existentes primero y aplica migraciones con cuidado.
+
 ## Agentes
 - `spec-verifier` (definido en `.opencode/agents/spec-verifier.md`, versionado en el repo): agente verificador de los "Acceptance criteria" de un spec.
   - Localiza el spec (`specs/`, `docs/`, `*.spec.md`…), revisa cada criterio, verifica en el código y en UI (Playwright) y en la doc actual (Context7) si se cumple.
