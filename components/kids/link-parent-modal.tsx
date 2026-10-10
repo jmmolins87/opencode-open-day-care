@@ -51,7 +51,8 @@ export default function LinkParentModal({
     };
   }, [onClose]);
 
-  const canSend = name.trim().length > 0 && isValidEmail(email.trim());
+  const canSend =
+    name.trim().length > 0 && isValidEmail(email.trim()) && relation.length > 0;
 
   function handleSend() {
     if (!canSend) return;
@@ -105,6 +106,8 @@ export default function LinkParentModal({
             value={name}
             onChange={(event) => setName(event.target.value)}
             placeholder="Ej. Diego Fernández"
+            required
+            aria-required="true"
             className={`mb-[18px] ${inputClassName}`}
           />
 
@@ -114,6 +117,8 @@ export default function LinkParentModal({
             value={email}
             onChange={(event) => setEmail(event.target.value)}
             placeholder="correo@ejemplo.com"
+            required
+            aria-required="true"
             className={`mb-[18px] ${inputClassName}`}
           />
 
