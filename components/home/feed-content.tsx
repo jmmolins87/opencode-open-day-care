@@ -28,9 +28,15 @@ export default function FeedContent() {
   }, [router]);
 
   function handleSave(form: NewPostFormValues) {
-    const kid = form.toRoom
-      ? undefined
-      : kids.find((item) => item.id === form.kidId);
+    const selectedKids = kids.filter((item) =>
+      form.kidIds.includes(item.id),
+    );
+    const audience =
+      selectedKids.length === kids.length
+        ? "Para: toda la sala"
+        : `Para: familia de ${selectedKids
+            .map((item) => item.name.split(" ")[0])
+            .join(", ")}`;
     const newPost: Post = {
       id: String(
         Math.max(...postList.map((post) => Number(post.id)), 0) + 1,
@@ -39,9 +45,7 @@ export default function FeedContent() {
       author: user.name.split(" ")[0],
       authorInitial: user.initial,
       time: "Ahora",
-      audience: kid
-        ? `Para: familia de ${kid.name.split(" ")[0]}`
-        : "Para: toda la sala",
+      audience,
       body: form.body,
       photos: form.photos.length > 0 ? form.photos : undefined,
       likes: 0,
