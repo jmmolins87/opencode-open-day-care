@@ -76,14 +76,20 @@ function DetailsCard({ kid }: { kid: Kid }) {
   );
 }
 
-function ParentsCard({ kid }: { kid: Kid }) {
+function ParentsCard({
+  parents,
+  onLinkParent,
+}: {
+  parents: KidParent[];
+  onLinkParent: () => void;
+}) {
   return (
     <div className="rounded-[16px] border border-border bg-surface px-[18px] py-4">
       <div className="mb-[14px] text-[12.5px] font-extrabold tracking-[.8px] text-ink-section">
         PADRES VINCULADOS
       </div>
       <div className="flex flex-col gap-[14px]">
-        {kid.parents.map((parent) => (
+        {parents.map((parent) => (
           <div key={parent.id} className="flex items-center gap-3">
             <span
               className="flex h-10 w-10 flex-none items-center justify-center rounded-full font-heading text-[16px] font-semibold text-white"
@@ -102,9 +108,10 @@ function ParentsCard({ kid }: { kid: Kid }) {
             <ParentBadge parent={parent} />
           </div>
         ))}
-        <Link
-          href="/link-parent"
-          className="flex items-center gap-3 pt-2"
+        <button
+          type="button"
+          onClick={onLinkParent}
+          className="flex w-full cursor-pointer items-center gap-3 pt-2 text-left"
         >
           <span className="flex h-10 w-10 flex-none items-center justify-center rounded-full border-[1.5px] border-dashed border-[#D8CBBA] text-[#B0A290]">
             <PlusIcon className="h-[18px] w-[18px]" strokeWidth={2.2} />
@@ -112,13 +119,21 @@ function ParentsCard({ kid }: { kid: Kid }) {
           <span className="text-[14.5px] font-extrabold text-accent-link">
             Vincular otro padre
           </span>
-        </Link>
+        </button>
       </div>
     </div>
   );
 }
 
-export default function KidProfile({ kid }: { kid: Kid }) {
+export default function KidProfile({
+  kid,
+  parents,
+  onLinkParent,
+}: {
+  kid: Kid;
+  parents: KidParent[];
+  onLinkParent: () => void;
+}) {
   return (
     <div>
       <Link
@@ -166,7 +181,7 @@ export default function KidProfile({ kid }: { kid: Kid }) {
             <SunIcon className="h-[18px] w-[18px]" />
             Resumen del día
           </Link>
-          <ParentsCard kid={kid} />
+          <ParentsCard parents={parents} onLinkParent={onLinkParent} />
         </div>
       </div>
     </div>
