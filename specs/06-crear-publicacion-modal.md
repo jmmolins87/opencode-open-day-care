@@ -1,6 +1,6 @@
 # SPEC 06 — Modal "Crear publicación" desde el sidebar
 
-> **Estado:** Approved
+> **Estado:** Implemented
 > **Depende de:** SPEC 01
 > **Fecha:** 2026-10-10
 > **Objetivo:** Implementar `references/pantallas/crear-publicacion.dc.html` como modal abierta desde el botón del sidebar (y el composer del feed) que crea una publicación en memoria con tipo, audiencia, descripción y fotos con drag & drop.
@@ -79,19 +79,19 @@ const newPost: Post = {
 
 ## Criterios de aceptación
 
-- [ ] En `/`, "Nueva publicación" (sidebar) abre la modal sin navegar; la URL no cambia.
-- [ ] En `/kids` y `/kids/[id]`, el botón navega a `/?create=1`, la modal se abre sola al llegar y la URL queda en `/`.
-- [ ] El composer "Comparte un momento…" de `/` abre la misma modal; el "Editar" de los posts sigue enlazando a `/create-post`.
-- [ ] La modal muestra header (Cancelar / Nueva publicación / Publicar), 9 chips PARA (8 niños + Toda la sala, Mateo activo), 7 chips TIPO (Comida activo), textarea con placeholder y zona FOTOS con "Agregar".
-- [ ] Cambiar de niño o "Toda la sala" deja solo ese chip activo (activo: fondo `#3F362E`, texto blanco; inactivo: fondo `#FFFDF9`, borde `#ECE0D0`); cambiar de tipo deja solo ese con su color sólido del recurso.
-- [ ] "Publicar" está deshabilitado con descripción vacía y se habilita con texto no vacío.
-- [ ] Esc, click en el fondo y Cancelar cierran la modal; con ella abierta el body no scrollea.
-- [ ] Soltar 1+ imágenes sobre la zona FOTOS o pulsar "Agregar" añade previews 96×96 (máx. 5); la X de cada preview la elimina y libera hueco.
-- [ ] Publicando Mateo + Comida + texto: el modal se cierra y el post aparece primero con badge COMIDA, "Para: familia de Mateo", "Ahora · publicado por vos", 0 likes y 0 comentarios.
-- [ ] Publicando "Toda la sala" + Anuncio: audience "Para: toda la sala" y badge ANUNCIO; con fotos, la card muestra las imágenes.
-- [ ] Recargar `/` pierde los posts nuevos; los 3 mock siguen intactos con sus badges LOGRO/ACTIVIDAD/ANUNCIO.
-- [ ] Reabrir tras publicar o cancelar muestra el formulario limpio (Comida, Mateo, sin texto ni fotos).
-- [ ] Sin desbordes ni errores de consola a 1280px y 390×844; sin `<a>` literales; nombres de código en inglés.
+- [x] En `/`, "Nueva publicación" (sidebar) abre la modal sin navegar; la URL no cambia.
+- [x] En `/kids` y `/kids/[id]`, el botón navega a `/?create=1`, la modal se abre sola al llegar y la URL queda en `/`.
+- [x] El composer "Comparte un momento…" de `/` abre la misma modal; el "Editar" de los posts sigue enlazando a `/create-post`.
+- [x] La modal muestra header (Cancelar / Nueva publicación / Publicar), 9 chips PARA (8 niños + Toda la sala, Mateo activo), 7 chips TIPO (Comida activo), textarea con placeholder y zona FOTOS con "Agregar".
+- [x] Cambiar de niño o "Toda la sala" deja solo ese chip activo (activo: fondo `#3F362E`, texto blanco; inactivo: fondo `#FFFDF9`, borde `#ECE0D0`); cambiar de tipo deja solo ese con su color sólido del recurso.
+- [x] "Publicar" está deshabilitado con descripción vacía y se habilita con texto no vacío.
+- [x] Esc, click en el fondo y Cancelar cierran la modal; con ella abierta el body no scrollea.
+- [x] Soltar 1+ imágenes sobre la zona FOTOS o pulsar "Agregar" añade previews 96×96 (máx. 5); la X de cada preview la elimina y libera hueco.
+- [x] Publicando Mateo + Comida + texto: el modal se cierra y el post aparece primero con badge COMIDA, "Para: familia de Mateo", "Ahora · publicado por vos", 0 likes y 0 comentarios.
+- [x] Publicando "Toda la sala" + Anuncio: audience "Para: toda la sala" y badge ANUNCIO; con fotos, la card muestra las imágenes.
+- [x] Recargar `/` pierde los posts nuevos; los 3 mock siguen intactos con sus badges LOGRO/ACTIVIDAD/ANUNCIO.
+- [x] Reabrir tras publicar o cancelar muestra el formulario limpio (Comida, Mateo, sin texto ni fotos).
+- [x] Sin desbordes ni errores de consola a 1280px y 390×844; sin `<a>` literales; nombres de código en inglés.
 
 ## Decisiones
 
