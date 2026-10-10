@@ -147,7 +147,7 @@ export default function KidProfile({ kid }: { kid: Kid }) {
               </p>
             </div>
             <Link
-              href="/kids/nuevo"
+              href="/kids/new"
               className="flex-none rounded-[12px] border-[1.5px] border-border bg-surface px-4 py-[9px] text-[14px] font-bold text-nav-inactive"
             >
               Editar

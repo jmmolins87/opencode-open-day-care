@@ -36,6 +36,8 @@ export interface Kid {
   parents: KidParent[];
 }
 
+export const rooms = ["Soles"] as const;
+
 export const kids: Kid[] = [
   {
     id: 1,
