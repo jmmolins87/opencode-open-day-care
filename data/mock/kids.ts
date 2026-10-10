@@ -19,6 +19,7 @@ export interface KidParent {
   initial: string;
   avatarColor: string;
   status: ParentStatus;
+  email?: string;
 }
 
 export interface Kid {
