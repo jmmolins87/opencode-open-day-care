@@ -1,6 +1,13 @@
 // Mock data for the feed page
 
-export type PostKind = "achievement" | "activity" | "announcement";
+export type PostKind =
+  | "meal"
+  | "nap"
+  | "activity"
+  | "achievement"
+  | "mood"
+  | "photo"
+  | "announcement";
 
 export interface Post {
   id: string;
@@ -11,6 +18,7 @@ export interface Post {
   audience: string;
   body: string;
   photo?: { src: string; caption: string };
+  photos?: string[];
   likes: number;
   comments: number;
   isMine: boolean;

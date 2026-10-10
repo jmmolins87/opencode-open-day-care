@@ -1,3 +1,5 @@
+"use client";
+
 import Link from "next/link";
 import { navItems, type NavItem } from "@/data/mock/nav";
 import { user } from "@/data/mock/user";
@@ -6,7 +8,11 @@ import { LogOutIcon, navIcons, PlusIcon, SunIcon, type NavIconName } from "./ico
 interface SidebarProps {
   active: NavItem["href"];
   className?: string;
+  onNewPost?: () => void;
 }
+
+const newPostClassName =
+  "mb-[18px] flex w-full items-center justify-center gap-2 rounded-[14px] bg-gradient-to-b from-btn-start to-btn-end px-3 py-3 text-[14.5px] font-extrabold text-white shadow-[0_8px_18px_-8px_rgba(238,129,100,.75)]";
 
 function NavItemLink({ item, isActive }: { item: NavItem; isActive: boolean }) {
   const Icon = navIcons[item.icon as NavIconName];
@@ -26,7 +32,7 @@ function NavItemLink({ item, isActive }: { item: NavItem; isActive: boolean }) {
   );
 }
 
-export default function Sidebar({ active, className = "" }: SidebarProps) {
+export default function Sidebar({ active, className = "", onNewPost }: SidebarProps) {
   return (
     <aside
       className={`sticky top-0 flex h-screen w-[248px] flex-none flex-col border-r border-border bg-surface p-6 px-4 ${className}`}
@@ -48,13 +54,21 @@ export default function Sidebar({ active, className = "" }: SidebarProps) {
         </span>
       </Link>
 
-      <Link
-        href="/create-post"
-        className="mb-[18px] flex w-full items-center justify-center gap-2 rounded-[14px] bg-gradient-to-b from-btn-start to-btn-end px-3 py-3 text-[14.5px] font-extrabold text-white shadow-[0_8px_18px_-8px_rgba(238,129,100,.75)]"
-      >
-        <PlusIcon className="h-[17px] w-[17px]" strokeWidth={2.4} />
-        Nueva publicación
-      </Link>
+      {onNewPost ? (
+        <button
+          type="button"
+          onClick={onNewPost}
+          className={`${newPostClassName} cursor-pointer`}
+        >
+          <PlusIcon className="h-[17px] w-[17px]" strokeWidth={2.4} />
+          Nueva publicación
+        </button>
+      ) : (
+        <Link href="/?create=1" className={newPostClassName}>
+          <PlusIcon className="h-[17px] w-[17px]" strokeWidth={2.4} />
+          Nueva publicación
+        </Link>
+      )}
 
       <nav className="flex flex-1 flex-col gap-1">
         {navItems.map((item) => (

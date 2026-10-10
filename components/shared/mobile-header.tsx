@@ -8,9 +8,10 @@ import Sidebar from "./sidebar";
 
 interface MobileHeaderProps {
   active: NavItem["href"];
+  onNewPost?: () => void;
 }
 
-export default function MobileHeader({ active }: MobileHeaderProps) {
+export default function MobileHeader({ active, onNewPost }: MobileHeaderProps) {
   const [isDrawerOpen, setIsDrawerOpen] = useState(false);
 
   const closeDrawer = () => setIsDrawerOpen(false);
@@ -54,7 +55,17 @@ export default function MobileHeader({ active }: MobileHeaderProps) {
             className="fixed inset-0 z-40 bg-black/40"
           />
           <div className="fixed inset-y-0 left-0 z-50">
-            <Sidebar active={active} />
+            <Sidebar
+              active={active}
+              onNewPost={
+                onNewPost
+                  ? () => {
+                      closeDrawer();
+                      onNewPost();
+                    }
+                  : undefined
+              }
+            />
             <button
               type="button"
               onClick={closeDrawer}

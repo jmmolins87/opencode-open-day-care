@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { posts, type Post, type PostKind } from "@/data/mock/posts";
+import { type Post, type PostKind } from "@/data/mock/posts";
 import {
   CommentIcon,
   HeartIcon,
@@ -19,6 +19,22 @@ const badgeStyles: Record<PostKind, { label: string; className: string }> = {
   announcement: {
     label: "ANUNCIO",
     className: "bg-badge-announcement-bg text-badge-announcement-fg",
+  },
+  meal: {
+    label: "COMIDA",
+    className: "bg-badge-meal-bg text-badge-meal-fg",
+  },
+  nap: {
+    label: "SIESTA",
+    className: "bg-badge-nap-bg text-badge-nap-fg",
+  },
+  mood: {
+    label: "ÁNIMO",
+    className: "bg-badge-mood-bg text-badge-mood-fg",
+  },
+  photo: {
+    label: "FOTO",
+    className: "bg-badge-photo-bg text-badge-photo-fg",
   },
 };
 
@@ -78,6 +94,19 @@ export default function PostCard({ post }: { post: Post }) {
         </Link>
       )}
 
+      {post.photos && post.photos.length > 0 && (
+        <div className="mt-[14px] flex flex-wrap gap-2">
+          {post.photos.map((src, index) => (
+            <img
+              key={src}
+              src={src}
+              alt={`Foto ${index + 1}`}
+              className="h-[140px] w-[140px] rounded-[14px] object-cover"
+            />
+          ))}
+        </div>
+      )}
+
       <div className="mt-4 flex items-center gap-[18px] border-t border-border-soft pt-[14px]">
         <span className="flex items-center gap-[7px] text-[14px] font-bold text-accent-action">
           <HeartIcon className="h-[19px] w-[19px]" fill="currentColor" />
@@ -102,7 +131,7 @@ export default function PostCard({ post }: { post: Post }) {
   );
 }
 
-export function PostList() {
+export function PostList({ posts }: { posts: Post[] }) {
   return (
     <div className="flex flex-col gap-4">
       {posts.map((post) => (
