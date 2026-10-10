@@ -1,7 +1,7 @@
 import { notFound } from "next/navigation";
 import MobileHeader from "@/components/shared/mobile-header";
 import Sidebar from "@/components/shared/sidebar";
-import KidProfile from "@/components/kids/kid-profile";
+import KidProfileContent from "@/components/kids/kid-profile-content";
 import { getKidById } from "@/data/mock/kids";
 
 export const instant = false;
@@ -24,7 +24,7 @@ export default async function KidProfilePage({
 
       <main className="min-w-0 flex-1 lg:h-screen lg:overflow-y-auto">
         <div className="mx-auto w-full max-w-[820px] px-5 pb-20 pt-8 lg:px-10 lg:pt-[34px]">
-          <KidProfile kid={kid} />
+          <KidProfileContent kid={kid} />
         </div>
       </main>
     </div>
