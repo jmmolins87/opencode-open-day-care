@@ -3,6 +3,7 @@ import MobileHeader from "@/components/shared/mobile-header";
 import Sidebar from "@/components/shared/sidebar";
 import { CameraIcon } from "@/components/shared/icons";
 import { PostList } from "@/components/home/post-card";
+import { posts } from "@/data/mock/posts";
 import { user } from "@/data/mock/user";
 
 export default function Home() {
@@ -49,7 +50,7 @@ export default function Home() {
             <span className="h-px flex-1 bg-divider" />
           </div>
 
-          <PostList />
+          <PostList posts={posts} />
         </div>
       </main>
     </div>
