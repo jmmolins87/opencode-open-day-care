@@ -16,7 +16,10 @@ export interface LinkParentFormValues {
 const relations: readonly ParentRelation[] = ["Mamá", "Papá", "Tutor/a"];
 
 const inputClassName =
-  "w-full rounded-[14px] border-[1.5px] border-[#EADFD0] bg-white px-4 py-[13px] text-[15px] text-ink outline-none placeholder:text-[#B6A99B]";
+  "w-full rounded-[14px] border-[1.5px] bg-white px-4 py-[13px] text-[15px] text-ink outline-none placeholder:text-[#B6A99B]";
+
+const inputBorder = "border-[#EADFD0]";
+const inputBorderError = "border-[#D9583C]";
 
 const labelClassName =
   "mb-2 text-[12px] font-extrabold tracking-[.7px] text-ink-soft";
@@ -37,6 +40,8 @@ export default function LinkParentModal({
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [relation, setRelation] = useState<ParentRelation>("Mamá");
+  const [nameTouched, setNameTouched] = useState(false);
+  const [emailTouched, setEmailTouched] = useState(false);
 
   useEffect(() => {
     const previousOverflow = document.body.style.overflow;
@@ -51,7 +56,14 @@ export default function LinkParentModal({
     };
   }, [onClose]);
 
-  const canSend = name.trim().length > 0 && isValidEmail(email.trim());
+  const canSend =
+    name.trim().length > 0 && isValidEmail(email.trim()) && relation.length > 0;
+
+  const emailValue = email.trim();
+  const nameInvalid = nameTouched && name.trim().length === 0;
+  const emailEmptyInvalid = emailTouched && emailValue.length === 0;
+  const emailFormatInvalid =
+    emailTouched && emailValue.length > 0 && !isValidEmail(emailValue);
 
   function handleSend() {
     if (!canSend) return;
@@ -100,23 +112,52 @@ export default function LinkParentModal({
             </span>
           </div>
 
-          <div className={labelClassName}>NOMBRE DEL PADRE/MADRE</div>
+          <div className={labelClassName}>
+            NOMBRE DEL PADRE/MADRE <span className="text-accent-strong">*</span>
+          </div>
           <input
             value={name}
             onChange={(event) => setName(event.target.value)}
+            onBlur={() => setNameTouched(true)}
             placeholder="Ej. Diego Fernández"
-            className={`mb-[18px] ${inputClassName}`}
+            required
+            aria-required="true"
+            aria-invalid={nameInvalid}
+            className={`${inputClassName} ${
+              nameInvalid ? inputBorderError : inputBorder
+            } ${nameInvalid ? "mb-1" : "mb-[18px]"}`}
           />
+          {nameInvalid && (
+            <p className="m-0 mb-[18px] text-[12px] text-accent-strong">
+              Campo obligatorio
+            </p>
+          )}
 
-          <div className={labelClassName}>EMAIL</div>
+          <div className={labelClassName}>
+            EMAIL <span className="text-accent-strong">*</span>
+          </div>
           <input
             type="email"
             value={email}
             onChange={(event) => setEmail(event.target.value)}
+            onBlur={() => setEmailTouched(true)}
             placeholder="correo@ejemplo.com"
-            className={`mb-[18px] ${inputClassName}`}
+            required
+            aria-required="true"
+            aria-invalid={emailEmptyInvalid || emailFormatInvalid}
+            className={`${inputClassName} ${
+              emailEmptyInvalid || emailFormatInvalid
+                ? inputBorderError
+                : inputBorder
+            } ${
+              emailEmptyInvalid || emailFormatInvalid ? "mb-1" : "mb-[18px]"
+            }`}
           />
-
+          {(emailEmptyInvalid || emailFormatInvalid) && (
+            <p className="m-0 mb-[18px] text-[12px] text-accent-strong">
+              {emailEmptyInvalid ? "Campo obligatorio" : "Email no válido"}
+            </p>
+          )}
           <div className="mb-[10px] text-[12px] font-extrabold tracking-[.7px] text-ink-soft">
             PARENTESCO
           </div>
