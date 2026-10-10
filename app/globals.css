@@ -43,6 +43,14 @@
   --color-badge-activity-fg: #2e89a6;
   --color-badge-announcement-bg: #ccd8f4;
   --color-badge-announcement-fg: #4e72c8;
+  --color-badge-meal-bg: #f7e7a6;
+  --color-badge-meal-fg: #9a7b1e;
+  --color-badge-nap-bg: #e7dcf6;
+  --color-badge-nap-fg: #7b5fc0;
+  --color-badge-mood-bg: #f9d2de;
+  --color-badge-mood-fg: #c56486;
+  --color-badge-photo-bg: #fbd8cc;
+  --color-badge-photo-fg: #d9684a;
 
   /* Avatars */
   --color-avatar-child-bg: #a9d9e8;

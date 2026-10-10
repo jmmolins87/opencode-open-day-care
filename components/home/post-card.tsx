@@ -20,6 +20,22 @@ const badgeStyles: Record<PostKind, { label: string; className: string }> = {
     label: "ANUNCIO",
     className: "bg-badge-announcement-bg text-badge-announcement-fg",
   },
+  meal: {
+    label: "COMIDA",
+    className: "bg-badge-meal-bg text-badge-meal-fg",
+  },
+  nap: {
+    label: "SIESTA",
+    className: "bg-badge-nap-bg text-badge-nap-fg",
+  },
+  mood: {
+    label: "ÁNIMO",
+    className: "bg-badge-mood-bg text-badge-mood-fg",
+  },
+  photo: {
+    label: "FOTO",
+    className: "bg-badge-photo-bg text-badge-photo-fg",
+  },
 };
 
 function AuthorAvatar({ post }: { post: Post }) {
